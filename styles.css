@@ -1,0 +1,852 @@
+/* ------------------ Reset ------------------ */
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: Arial, Helvetica, sans-serif; line-height:1.6; color:#333; background:#f9f9f9; }
+
+/* ------------------ Header ------------------ */
+/* ============================
+   Header (corrigido - proporções, alinhamento e responsividade)
+   Substitua as regras antigas do header por estas
+============================ */
+
+header {
+  background: #ffffff;
+  border-bottom: 1px solid #e6e6e6;
+  padding: 10px 20px;
+}
+
+header .container {
+  /* limite de largura e centralizar */
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: nowrap;
+}
+
+/* logo: imagem + texto */
+.logo {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+.logo img {
+  height: 46px;         /* proporção um pouco maior para equilibrar */
+  width: auto;
+  display: block;
+}
+.logo a {
+  
+  font-weight: 700;
+  color: #0d47a1;
+  text-decoration: none;
+  line-height: 1;
+}
+
+/* nav ocupa o espaço central e fica alinhado ao centro */
+nav {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+nav ul li a {
+  text-decoration: none;
+  color: #374151;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background 0.18s, color 0.18s, transform 0.12s;
+  display: inline-block;
+}
+nav ul li a:hover,
+nav ul li a.active {
+  background: #0d47a1;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* search e actions ficam à direita (não empurram o nav) */
+.search-bar {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 12px;
+}
+.search-bar input[type="text"] {
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  min-width: 220px;
+  background: #fff;
+  font-size: 14px;
+}
+.search-bar button {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  background: #0d47a1;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+.search-bar button:hover { background:#06337c; }
+
+.actions {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.actions .user-name {
+  color: #0d47a1;
+  font-weight: 600;
+  margin-right: 6px;
+}
+.actions .btn {
+  background: #2196f3;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+}
+.actions .btn:hover { background:#1976d2; }
+
+/* Responsividade do header (reorganiza os itens em telas pequenas) */
+@media (max-width: 900px) {
+  header .container { padding: 10px 16px; gap:12px; }
+  nav { order: 3; width: 100%; justify-content: center; margin-top: 8px; }
+  .search-bar { order: 2; width: 100%; justify-content: center; margin: 6px 0; }
+  .search-bar input[type="text"] { min-width: 60%; }
+  .actions { order: 4; }
+  .logo { order: 1; }
+}
+
+/* ============================
+   Hero / Apresentação (texto estilizado)
+   Substitua as regras antigas do hero por estas
+============================ */
+
+.hero {
+  position: relative;
+  background: url('uploads/hero.jpg') no-repeat center center/cover;
+  min-height: 360px;
+  display: flex;
+  align-items: center;
+  padding: 56px 16px;
+  color: #fff;
+}
+
+/* camada escura para legibilidade da imagem */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+}
+
+/* conteúdo do hero: agora aparece como um card à esquerda (quando .left) */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+}
+
+/* versão alinhada à esquerda (usada na página inicial) */
+.hero-content.left {
+  max-width: 720px;
+  margin-left: 48px;
+  text-align: left;
+  /* painel claro para legibilidade e boa tipografia */
+  background: rgba(255,255,255,0.95);
+  color: #111827;
+  padding: 24px 28px;
+  border-radius: 10px;
+  box-shadow: 0 12px 30px rgba(12,15,20,0.06);
+}
+
+/* título e parágrafo do painel (visual mais limpo) */
+.hero-content.left h1 {
+  color: #0d47a1;
+  font-size: 34px;
+  margin-bottom: 12px;
+  line-height: 1.1;
+  font-weight: 800;
+}
+
+.hero-content.left p {
+  color: #374151;
+  font-size: 15px;
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+
+/* botão dentro do painel */
+.hero-content.left .hero-btn {
+  display: inline-block;
+  padding: 12px 20px;
+  background: linear-gradient(135deg,#0d47a1,#1976d2);
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+}
+.hero-content.left .hero-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg,#06337c,#1565c0);
+}
+
+/* pequena otimização para quando não usamos o painel (ex.: outras páginas) */
+.hero-content:not(.left) h1,
+.hero-content:not(.left) p {
+  color: #fff;
+}
+
+/* responsividade do hero */
+@media (max-width: 920px) {
+  .hero { padding: 36px 14px; }
+  .hero-content.left { margin-left: 0; padding: 18px; }
+  .hero-content.left h1 { font-size: 28px; }
+  .hero-content.left p { font-size: 14px; }
+}
+
+@media (max-width: 520px) {
+  .logo img { height: 36px; }
+  .hero-content.left { padding: 14px; }
+  .hero-content.left h1 { font-size: 22px; }
+  .hero-content.left p { font-size: 13px; line-height:1.5; }
+  .search-bar input[type="text"] { min-width: 120px; }
+}
+
+/* ------------------ Barra de Pesquisa ------------------ */
+.search-container { display:flex; justify-content:center; margin:36px 0; }
+.search-bar.big { width:100%; max-width:720px; display:flex; gap:10px; }
+.search-bar.big input { padding:12px 16px; border:1px solid #ccc; border-radius:6px; flex:1; }
+.search-bar.big button { background:#0d47a1; color:#fff; border:none; padding:12px 18px; border-radius:6px; font-weight:bold; cursor:pointer; }
+.search-bar.big button:hover { background:#06337c; }
+
+/* ------------------ Notícias (Cards) ------------------ */
+.noticias { 
+  padding:20px 40px; 
+  background:#f8f8fa; /* 🔹 branco levemente acinzentado para o fundo da seção */
+}
+.noticias h2 { margin-bottom:14px; color:#0d47a1; }
+.cards { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
+.card { 
+  flex:1 1 calc(33% - 20px); 
+  min-width:260px; 
+  max-width:360px; 
+  background:#fcfcfd; /* 🔹 branco suave no card */
+  border-radius:10px; 
+  overflow:hidden; 
+  box-shadow:0 2px 8px rgba(0,0,0,0.06); 
+  display:flex; 
+  flex-direction:column; 
+}
+.card img { width:100%; height:200px; object-fit:cover; display:block; }
+.card .categoria { display:inline-block; margin:12px 12px 0 12px; color:#0d47a1; font-weight:600; }
+.card h3 { margin:10px 12px 0 12px; font-size:18px; }
+.card p { margin:8px 12px 12px 12px; color:#555; flex-grow:1; }
+.card a { margin:12px; display:inline-block; background:#0d47a1; color:#fff; padding:8px 14px; border-radius:8px; text-decoration:none; font-weight:bold; }
+.card a:hover { background:#06337c; }
+
+/* ------------------ Login & Cadastro ------------------ */
+.auth-container { display:flex; justify-content:center; align-items:center; padding:60px 20px; }
+.auth-box { background:#fff; padding:40px 30px; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.1); max-width:400px; width:100%; text-align:center; }
+.auth-box h2 { margin-bottom:10px; color:#0d47a1; }
+.auth-box p { margin-bottom:20px; color:#555; font-size:14px; }
+.auth-box form { display:flex; flex-direction:column; gap:15px; text-align:left; }
+.auth-box label { font-size:14px; font-weight:500; color:#333; }
+.auth-box input[type="text"],
+.auth-box input[type="email"],
+.auth-box input[type="password"] { padding:10px; border:1px solid #ccc; border-radius:6px; font-size:14px; }
+.auth-box button { background:#0d47a1; color:#fff; border:none; padding:12px; border-radius:6px; font-size:15px; font-weight:bold; cursor:pointer; transition:background 0.3s; }
+.auth-box button:hover { background:#06337c; }
+.auth-box .link { margin-top:12px; font-size:13px; }
+.auth-box .link a { color:#0d47a1; text-decoration:none; font-weight:bold; }
+.auth-box .error { color:#d32f2f; margin-bottom:10px; font-size:14px; }
+
+/* ------------------ Formulário de Postar/Editar Notícia ------------------ */
+.news-form {
+  max-width: 700px;
+  margin: 50px auto;
+  background: #fff;
+  padding: 40px 35px;
+  border-radius: 12px;
+  box-shadow: 0px 6px 20px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.news-form h2 {
+  color: #0d47a1;
+  margin-bottom: 5px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+.news-form label { font-weight: 600; color: #333; margin-bottom: 6px; display: block; }
+.news-form input[type="text"], .news-form textarea, .news-form select {
+  width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ccc; font-size: 15px; transition: border 0.3s;
+}
+.news-form textarea { min-height: 160px; resize: vertical; }
+.news-form .editor-buttons { display: flex; gap: 10px; margin-bottom: -10px; }
+.news-form .editor-buttons button {
+  padding: 8px 12px; border-radius: 6px; border: 1px solid #ddd; background: #f0f0f0; cursor: pointer; font-weight: bold; transition: background 0.3s;
+}
+.news-form .editor-buttons button:hover { background: #e0e0e0; }
+input[type="file"] { display: none; }
+.file-label { display: inline-block; background: #2196f3; color: #fff; padding: 10px 18px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: background 0.3s; }
+.file-label:hover { background: #1976d2; }
+.news-form .form-actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 10px; }
+.news-form button[type="submit"] { background: #0d47a1; color: #fff; padding: 12px 20px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; transition: background 0.3s; }
+.news-form button[type="submit"]:hover { background: #06337c; }
+.news-form .btn-cancel {
+  background: #f0f0f0; color: #333; padding: 12px 20px; border-radius: 8px;
+  text-decoration: none; font-weight: bold; border: 1px solid #ccc; transition: background 0.3s;
+}
+.news-form .btn-cancel:hover { background: #ddd; }
+
+/* ------------------ Página de Notícia ------------------ */
+.noticia-detalhe { max-width:900px; margin:40px auto; background:#fff; padding:30px; border-radius:10px; box-shadow:0px 2px 10px rgba(0,0,0,0.1); }
+.noticia-detalhe img { width:100%; max-height:400px; object-fit:cover; border-radius:10px; margin-bottom:20px; }
+.noticia-detalhe h1 { font-size:28px; margin-bottom:10px; color:#111827; }
+.noticia-detalhe h2 { font-size:18px; margin-bottom:20px; font-weight:normal; color:#374151; }
+.noticia-detalhe p { font-size:16px; margin-bottom:15px; color:#444; line-height:1.6; }
+
+/* ------------------ Comentários ------------------ */
+.comentarios { padding:30px; margin-top:20px; background:#f9f9f9; border-radius:10px; border:1px solid #ddd; }
+.comentarios h2 { margin-bottom:15px; color:#0d47a1; }
+.form-comentario { display:flex; flex-direction:column; gap:10px; margin-bottom:20px; }
+.form-comentario textarea { padding:12px; border-radius:6px; border:1px solid #ccc; resize:vertical; min-height:80px; }
+.form-comentario button { align-self:flex-end; background:linear-gradient(135deg,#0d47a1,#1976d2); color:#fff; border:none; padding:10px 18px; border-radius:6px; font-weight:bold; cursor:pointer; }
+.form-comentario button:hover { background:#06337c; }
+.lista-comentarios { display:flex; flex-direction:column; gap:15px; }
+.comentario { background:#fff; padding:12px 15px; border-radius:6px; border:1px solid #eee; box-shadow:0px 2px 6px rgba(0,0,0,0.05); }
+.comentario strong { color:#0d47a1; }
+
+/* ------------------ Botões Editar e Excluir ------------------ */
+
+.btn-edit, .btn-delete {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.btn-edit { background: #2196f3; color: #fff; }
+.btn-edit:hover { background: #1976d2; transform: translateY(-2px); }
+
+.btn-delete { background: #e53935; color: #fff; }
+.btn-delete:hover { background: #c62828; transform: translateY(-2px); }
+/* ======================
+   APÊNDICE RESPONSIVO
+   (Cole ao final do styles.css — não altera regras existentes)
+   ====================== */
+
+/* --- pequenas correções gerais para tornar elementos fluídos --- */
+header .container {
+  
+  margin: 0 auto;
+  padding: 0 16px; /* garante espaçamento lateral em telas pequenas */
+}
+
+/* garanti que imagens dentro de cards e notícia não "vazam" */
+.card img,
+.noticia-detalhe img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover; /* mantém comport. anterior */
+}
+
+/* mantém botões e elementos do header empilháveis sem quebrar */
+.search-bar, .actions, nav ul {
+  min-width: 0; /* evita overflow em alguns navegadores */
+}
+
+/* --- responsividade por breakpoints (apenas ajustes, nada substitui regras base) --- */
+
+/* Tablet / small laptops */
+@media (max-width: 1024px) {
+  /* reduz altura do hero visualmente sem alterar seu estilo base */
+  .hero { min-height: 320px; padding: 48px 14px; }
+  .hero-content.left { max-width: 640px; margin-left: 32px; }
+
+  /* cards: deixa 2 colunas quando couber */
+  .cards { gap:18px; }
+  .card { flex: 1 1 calc(50% - 18px); max-width: calc(50% - 18px); }
+}
+
+/* Medium mobiles / large phones */
+@media (max-width: 900px) {
+  /* empilha header mantendo estilos */
+  header .container { flex-direction: column; align-items: stretch; gap:10px; }
+  nav { order: 3; width: 100%; }
+  .search-bar { order: 2; width: 100%; display:flex; justify-content:center; margin: 6px 0; }
+  .search-bar input[type="text"] { width: 70%; min-width: 160px; }
+  .actions { order: 4; justify-content:center; width: 100%; }
+
+  /* hero painel reduzido e sem deslocamento exagerado */
+  .hero { padding: 36px 12px; min-height: 300px; }
+  .hero-content.left { margin-left: 0; width: auto; padding: 18px; }
+
+  /* cards se transformam em duas colunas (quando possível) */
+  .cards { justify-content: center; }
+  .card { flex: 1 1 calc(50% - 18px); max-width: calc(50% - 18px); min-width: 220px; }
+}
+
+/* Small phones */
+@media (max-width: 520px) {
+  /* header e nav empilhados verticalmente, centralizados */
+  header .container { padding: 8px 12px; }
+  .logo img { height: 38px; } /* reduz levemente a logo para caber */
+  nav ul { gap: 8px; flex-wrap: wrap; justify-content: center; }
+  nav ul li a { padding: 6px 8px; font-size: 14px; }
+
+  /* busca compacta */
+  .search-bar input[type="text"] { width: 140px; min-width: 120px; padding: 7px 10px; font-size: 13px; }
+  .search-bar button { padding: 7px 10px; font-size: 13px; }
+
+  /* cards: 1 coluna full-width com margens laterais */
+  .card { flex: 1 1 100%; max-width: 100%; width: calc(100% - 32px); margin: 0 auto; min-height: auto; }
+  .cards { gap: 16px; padding: 0 8px; }
+
+  /* hero e hero-content compactos */
+  .hero { padding: 26px 10px; min-height: 240px; }
+  .hero-content.left { padding: 14px; border-radius: 8px; }
+
+  /* notícias resumo mais compacto */
+  .card h3 { font-size: 16px; }
+  .card p { font-size: 13px; max-height: 120px; overflow: hidden; }
+
+  /* botões admin e ler mais centralizados e com espaçamento reduzido */
+
+  .btn-edit, .btn-delete, .card a { padding: 7px 10px; font-size: 14px; }
+}
+
+/* Extra: evitar que textos longos quebrem o layout */
+.card h3, .card p, .noticia-detalhe h1 {
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Extra: pequenas transições para evitar "saltos" visuais em resizing */
+.card, .hero-content.left, header .container {
+  -webkit-transition: padding 0.18s ease, margin 0.18s ease;
+  transition: padding 0.18s ease, margin 0.18s ease;
+}
+
+/* Fallbacks para navegadores antigos que não suportam calc/clamp (não sobrescrevem estilos existentes) */
+@supports not (width: calc(50% - 18px)) {
+  .card { width: 48%; }
+}
+
+/* ===============================
+   RESPONVISO COMPLETO PARA AS OUTRAS PÁGINAS
+   (não altera estilo existente)
+================================ */
+
+/* --- Página de Notícia (noticia.php) --- */
+@media (max-width: 900px) {
+    .noticia-detalhe {
+        width: 92%;
+        margin: 20px auto;
+        padding: 20px;
+    }
+    .noticia-detalhe img {
+        max-height: 260px;
+    }
+}
+
+/* --- Comentários --- */
+@media (max-width: 700px) {
+    .comentarios {
+        padding: 20px;
+    }
+    .form-comentario textarea {
+        min-height: 60px;
+    }
+    .comentario {
+        padding: 10px;
+    }
+}
+
+/* --- Postar/Editar Notícia --- */
+@media (max-width: 850px) {
+    .news-form {
+        width: 92%;
+        padding: 24px;
+        margin: 30px auto;
+    }
+}
+@media (max-width: 520px) {
+    .news-form {
+        padding: 16px;
+    }
+    .news-form input[type="text"],
+    .news-form textarea,
+    .news-form select {
+        font-size: 14px;
+        padding: 10px;
+    }
+    .editor-buttons button {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+    .file-label {
+        padding: 8px 14px;
+        font-size: 14px;
+    }
+    .news-form button[type="submit"],
+    .news-form .btn-cancel {
+        padding: 10px 14px;
+        font-size: 14px;
+    }
+}
+
+/* --- Login e Cadastro --- */
+@media (max-width: 750px) {
+    .auth-container {
+        padding: 40px 10px;
+    }
+    .auth-box {
+        width: 92%;
+        padding: 30px 20px;
+    }
+}
+@media (max-width: 520px) {
+    .auth-box h2 {
+        font-size: 20px;
+    }
+    .auth-box input {
+        padding: 9px;
+        font-size: 14px;
+    }
+    .auth-box button {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+/* --- Cards das páginas de categoria (avisos, artigos, eventos) --- */
+@media (max-width: 900px) {
+    .cards {
+        padding: 10px;
+        gap: 16px;
+    }
+    .card {
+        flex: 1 1 calc(50% - 16px);
+        max-width: calc(50% - 16px);
+    }
+}
+@media (max-width: 520px) {
+    .card {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
+
+/* --- Corrige textos que estouram em telas pequenas --- */
+@media (max-width: 450px) {
+    h1, h2, h3, p {
+        word-break: break-word;
+    }
+}
+/* ===============================
+   AJUSTES RESPONSIVOS FINAIS
+   (sem alterar estilo existente)
+================================ */
+
+/* Header precisa permitir quebra em telas pequenas */
+@media (max-width: 920px) {
+    header .container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .search-bar {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .actions {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Responsividade do formulário de postagem */
+@media (max-width: 800px) {
+    .news-form {
+        width: 92%;
+        padding: 28px;
+        margin: 30px auto;
+    }
+}
+
+@media (max-width: 520px) {
+    .news-form {
+        width: 94%;
+        padding: 20px;
+    }
+
+    .news-form input,
+    .news-form textarea,
+    .news-form select {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .editor-buttons button {
+        padding: 6px 8px;
+        font-size: 13px;
+    }
+
+    .file-label {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+    .news-form button[type="submit"],
+    .news-form .btn-cancel {
+        padding: 10px 14px;
+        font-size: 14px;
+    }
+}
+
+/* Ajustes de responsividade das páginas internas (artigos, avisos, eventos) */
+@media (max-width: 900px) {
+    .cards {
+        gap: 16px;
+        padding: 0 10px;
+    }
+    .card {
+        flex: 1 1 calc(50% - 16px);
+        max-width: calc(50% - 16px);
+    }
+}
+
+@media (max-width: 520px) {
+    .card {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
+
+/* Notícia interna */
+@media (max-width: 850px) {
+    .noticia-detalhe {
+        width: 90%;
+        padding: 20px;
+    }
+    .noticia-detalhe img {
+        max-height: 250px;
+    }
+}
+
+/* Login e cadastro */
+@media (max-width: 600px) {
+    .auth-container {
+        padding: 30px 15px;
+    }
+    .auth-box {
+        width: 92%;
+        padding: 28px 20px;
+    }
+}
+/* =========================================================
+   RESPONSIVO FIX — cole no FINAL do seu CSS
+   (não altera o visual; apenas corrige comportamento em telas menores)
+   ========================================================= */
+
+/* Base: evita travamento de largura em alguns contêineres */
+html { -webkit-text-size-adjust: 100%; }
+
+/* ----- Header: garantir quebra correta em telas menores ----- */
+@media (max-width: 900px) {
+  header .container {
+    max-width: 1200px;           /* mantém seu limite visual */
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px 16px;
+    display: flex;
+    flex-wrap: wrap !important;  /* força empilhamento */
+    gap: 12px;
+  }
+  header .container .logo   { order: 1; width: 100%; justify-content: center; }
+  header .container .search-bar { order: 2; width: 100%; justify-content: center; }
+  header .container nav     { order: 3; width: 100%; justify-content: center; }
+  header .container .actions{ order: 4; width: 100%; justify-content: center; }
+  .search-bar input[type="text"] { width: 70% !important; min-width: 160px; }
+}
+
+/* ----- Pages internas: Post/Editar notícia ----- */
+@media (max-width: 850px) {
+  .news-form {
+    width: 92% !important;
+    max-width: 700px;
+    margin: 30px auto !important;
+    padding: 24px !important;
+  }
+}
+@media (max-width: 520px) {
+  .news-form { padding: 16px !important; }
+  .news-form input[type="text"],
+  .news-form textarea,
+  .news-form select { font-size: 14px; padding: 10px; }
+  .news-form .editor-buttons button { padding: 6px 10px; font-size: 13px; }
+  .file-label { padding: 8px 14px; font-size: 14px; }
+  .news-form button[type="submit"],
+  .news-form .btn-cancel { padding: 10px 14px; font-size: 14px; }
+}
+
+/* ----- Página da notícia (detalhe) ----- */
+@media (max-width: 900px) {
+  .noticia-detalhe {
+    width: 92% !important;
+    margin: 20px auto !important;
+    padding: 20px !important;
+  }
+  .noticia-detalhe img { max-height: 260px !important; }
+}
+
+/* ----- Comentários ----- */
+@media (max-width: 700px) {
+  .comentarios { padding: 20px !important; }
+  .form-comentario textarea { min-height: 60px !important; }
+  .comentario { padding: 10px !important; }
+}
+
+/* ----- Listas de cards (avisos, artigos, eventos) ----- */
+@media (max-width: 1024px) {
+  .cards { gap: 18px !important; padding: 0 10px; }
+  .card  { flex: 1 1 calc(50% - 18px) !important; max-width: calc(50% - 18px) !important; }
+}
+@media (max-width: 560px) {
+  .card  { flex: 1 1 100% !important; max-width: 100% !important; }
+  .card h3 { font-size: 16px; }
+  .card p  { font-size: 13px; max-height: 120px; overflow: hidden; }
+}
+
+/* ----- Imagens sempre fluídas ----- */
+.card img,
+.noticia-detalhe img {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto;
+  object-fit: cover;
+}
+
+/* ----- Texto longo não estoura layout ----- */
+.card h3, .card p, .noticia-detalhe h1 {
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+/* ===== Alinhamento dos botões Editar / Excluir nos cards ===== */
+.admin-actions {
+  display: flex;              /* coloca os botões na mesma linha */
+  justify-content: center;    /* centraliza dentro do card */
+  align-items: center;
+  gap: 10px;                  /* espaço entre Editar e Excluir */
+  margin: 10px 0 14px 0;      /* distância do conteúdo do card */
+}
+
+/* tira a margem geral que .card a coloca, senão eles afastam demais */
+.admin-actions a {
+  margin: 0;
+}
+/* === TODOS OS CARDS DO MESMO TAMANHO === */
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 650px; /* << ajuste aqui: 380, 400, 430, 450 */
+}
+
+/* corpo ocupa o meio do card */
+.card-body {
+  flex: 1;
+  overflow: hidden;   /* impede de crescer demais */
+}
+
+/* footer sempre na mesma altura */
+.card-footer {
+  margin-top: auto;
+}
+
+/* botões admin sempre no fim do card */
+/* ------------------ Botões Editar e Excluir ------------------ */
+
+.btn-edit, .btn-delete {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.btn-edit { background: #2196f3; color: #fff; }
+.btn-edit:hover { background: #1976d2; transform: translateY(-2px); }
+
+.btn-delete { background: #e53935; color: #fff; }
+.btn-delete:hover { background: #c62828; transform: translateY(-2px); }
+
+/* Bloco com Ler mais + (Editar/Excluir) alinhados */
+.admin-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 12px 0 16px;
+  padding-top: 10px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.admin-actions a {
+  margin: 0;
+}
+
+/* Em telas pequenas pode quebrar linha se precisar */
+@media (max-width: 520px) {
+  .admin-actions {
+    flex-wrap: wrap;
+  }
+}
+/* ===== ALINHAR OS BOTÕES DO CABEÇALHO EM TELAS MENORES ===== */
+@media (max-width: 900px) {
+  .actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    flex-wrap: wrap;       /* permite quebrar pra linha de baixo */
+    text-align: center;
+  }
+
+  .actions .user-name {
+    width: 100%;           /* nome em cima, centralizado */
+    text-align: center;
+    margin-bottom: 4px;
+  }
+
+  .actions .btn {
+    min-width: 140px;      /* botões com tamanho parecido */
+    text-align: center;
+  }
+}
