@@ -111,14 +111,14 @@ nav ul li a.active {
   margin-right: 6px;
 }
 .actions .btn {
-  background: #2196f3;
+  background: #06337c;
   color: #fff;
   padding: 8px 12px;
   border-radius: 8px;
   text-decoration: none;
   font-weight: 700;
 }
-.actions .btn:hover { background:#1976d2; }
+.actions .btn:hover { background:#06337c; }
 
 /* Responsividade do header (reorganiza os itens em telas pequenas) */
 @media (max-width: 900px) {
@@ -196,7 +196,7 @@ nav ul li a.active {
 .hero-content.left .hero-btn {
   display: inline-block;
   padding: 12px 20px;
-  background: linear-gradient(135deg,#0d47a1,#1976d2);
+  background: linear-gradient(135deg,#0d47a1,#06337c);
   color: #fff;
   border-radius: 8px;
   text-decoration: none;
@@ -430,7 +430,7 @@ header .container {
 
   /* notícias resumo mais compacto */
   .card h3 { font-size: 16px; }
-  .card p { font-size: 13px; max-height: 120px; overflow: hidden; }
+  .card p { font-size: 13px;  }
 
   /* botões admin e ler mais centralizados e com espaçamento reduzido */
 
@@ -848,5 +848,33 @@ html { -webkit-text-size-adjust: 100%; }
   .actions .btn {
     min-width: 140px;      /* botões com tamanho parecido */
     text-align: center;
+    
+  }
+}
+.card-footer .meta {
+  margin-left: 10px;
+}
+/* ==== CORRIGE ALINHAMENTO DO ADMIN EM TELAS PEQUENAS ==== */
+@media (max-width: 900px) {
+  .actions {
+    display: flex !important;
+    flex-direction: row !important;   /* tudo na mesma linha */
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 10px !important;
+    width: 100%;
+  }
+
+  .actions .user-name {
+    margin: 0 !important;            /* remove espaço errado */
+    padding: 0 !important;
+    width: auto !important;          /* NÃO fica 100% */
+    text-align: center;
+    font-weight: bold;
+    white-space: nowrap;             /* impede quebra */
+  }
+
+  .actions .btn {
+    white-space: nowrap;             /* impede quebra do botão */
   }
 }

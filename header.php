@@ -19,7 +19,7 @@ $show_search = ($current_page === 'index.php'); // só mostra pesquisa no index
 
     <nav>
       <ul>
-        <li><a href="index.php" class="<?= $current_page === 'index.php' ? 'active' : '' ?>">Início</a></li>
+        <li><a href="index.php" class="<?= $Administrador === 'index.php' ? 'active' : '' ?>">Início</a></li>
         <li><a href="avisos.php" class="<?= $current_page === 'avisos.php' ? 'active' : '' ?>">Avisos</a></li>
         <li><a href="artigos.php" class="<?= $current_page === 'artigos.php' ? 'active' : '' ?>">Artigos</a></li>
         <li><a href="eventos.php" class="<?= $current_page === 'eventos.php' ? 'active' : '' ?>">Eventos</a></li>
